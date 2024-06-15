@@ -6,6 +6,10 @@ use std::thread;
 const LOCAL: &str = "127.0.0.1:6000";
 const MSG_SIZE: usize = 32;
 
+fn sleep() {
+    thread::sleep(::std::time::Duration::from_millis(100));
+}
+
 fn main() {
     let server = TcpListener::bind(LOCAL).expect("Listener failed to bind");
 
@@ -42,6 +46,8 @@ fn main() {
                         break;
                     }
                 }
+
+                sleep();
             });
         }
     }
